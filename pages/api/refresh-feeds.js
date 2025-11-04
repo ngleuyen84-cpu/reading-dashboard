@@ -2,7 +2,6 @@ import Parser from 'rss-parser'
 import { supabase } from '../../lib/supabaseClient'
 import OpenAI from 'openai'
 import fetch from 'node-fetch'
-import { detect } from 'langdetect'
 
 const parser = new Parser()
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })

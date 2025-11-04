@@ -1,0 +1,15 @@
+name: hourly-refresh-feeds
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour at minute 0 (UTC)
+  workflow_dispatch:
+
+jobs:
+  call-refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call refresh endpoint
+        run: |
+          curl -X POST "${{ secrets.SITE_URL }}/api/refresh-feeds" \
+            -H "Content-Type: application/json" \
+            -d '{"secret":"'"${{ secrets.CRON_SECRET }}"'"}'
